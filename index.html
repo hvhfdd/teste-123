@@ -1,33 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rede Social Católica</title>
- <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página em Desenvolvimento</title>
+    <style>
+        /* Estilos gerais */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Imagem de fundo */
+        body {
+            background-image: url('https://source.unsplash.com/1600x900/?nature,water');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        /* Container principal */
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Estilo do texto da hora */
+        #hora {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Mensagem de desenvolvimento */
+        .mensagem {
+            font-size: 1.5em;
+        }
+
+        /* Tela de carregamento */
+        .tela-carregamento {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Animação de carregamento */
+        .carregando::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: girar 1s linear infinite;
+        }
+
+        @keyframes girar {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Rede Social Católica</h1>
-    <div class="user-actions">
-      <input type="text" id="nome" placeholder="Seu nome" required>
-      <button id="iniciarLive">Iniciar Live</button>
-      <textarea id="mensagem" placeholder="Escreva uma mensagem..." required></textarea>
-      <button id="enviarMensagem">Enviar Mensagem</button>
+    <!-- Tela de carregamento -->
+    <div class="tela-carregamento">
+        <div class="carregando">Carregando...</div>
     </div>
 
-    <div id="mensagens">
-      <h2>Mensagens:</h2>
-      <!-- As mensagens serão exibidas aqui -->
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <div id="hora"></div>
+        <div class="mensagem">Site em Desenvolvimento</div>
     </div>
 
-    <div id="live">
-      <h2>Live:</h2>
-      <button id="iniciarLive" onclick="iniciarLive()">Iniciar Live</button>
-      <video id="videoLive" width="500" controls style="display:none"></video>
-    </div>
-  </div>
+    <script>
+        // Função para atualizar a hora
+        function atualizarHora() {
+            const elementoHora = document.getElementById('hora');
+            const agora = new Date();
+            const hora = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            elementoHora.textContent = `${hora}:${minutos}:${segundos}`;
+        }
 
-  <script src="script.js"></script>
+        // Atualiza a hora a cada segundo
+        setInterval(atualizarHora, 1000);
+        atualizarHora(); // Chama a função imediatamente
+
+        // Simula um tempo de carregamento
+        setTimeout(() => {
+            document.querySelector('.tela-carregamento').style.display = 'none';
+        }, 3000); // Remove a tela de carregamento após 3 segundos
+    </script>
 </body>
 </html>
